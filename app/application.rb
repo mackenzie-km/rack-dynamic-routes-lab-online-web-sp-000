@@ -5,7 +5,12 @@ class Application
       if req.path.match(/items\/.+/)
         desired_item = req.path.split("/").last
         found_item = Item.all.detect {|x| x.name == desired_item}
-        resp.write found_item.price
+        if found_item != nil
+          resp.write found_item.price
+        else
+          resp.status = 400
+          resp.write "Item is not there."
+        end
       else
         resp.status = 404
         resp.write "Route not found."
