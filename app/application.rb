@@ -9,7 +9,7 @@ class Application
           resp.write found_item.price
         else
           resp.status = 400
-          resp.write "Item is not there."
+          resp.write "Item not found"
         end
       else
         resp.status = 404
